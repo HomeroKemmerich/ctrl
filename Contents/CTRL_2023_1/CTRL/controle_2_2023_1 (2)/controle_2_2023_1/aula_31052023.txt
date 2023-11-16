@@ -1,0 +1,222 @@
+% Diretorio de trabalho:
+pwd
+ans =
+    '/Users/fernandopassold/Documents/MATLAB/controle_2_2023_1'
+% Continuando os projetos
+load planta
+Os
+{Unrecognized function or variable 'Os'.} 
+OS
+OS =
+    10
+%
+% Amplitudes de Ações de Controle
+
+% Verificando $u(t)$ para 3 controladores:
+% * Proporcional
+% * Ação Integram (PI ou Lag)
+% * Ação Derivativa (PD ou Lead)
+
+% Eq. do Controlador Proporcional:
+K3
+K3 =
+   100
+U_K3= K3/(1+K3*G)
+
+U_K3 =
+ 
+  100 s^3 + 1300 s^2 + 3200 s + 2000
+  ----------------------------------
+      s^3 + 13 s^2 + 32 s + 120
+ 
+Continuous-time transfer function.
+
+zpk(U_K3)
+
+ans =
+ 
+      100 (s+10) (s+2) (s+1)
+  -------------------------------
+  (s+11.09) (s^2 + 1.91s + 10.82)
+ 
+Continuous-time zero/pole/gain model.
+
+% Próximo controlador
+% PI ou Lag:
+% Eq. do PI3 (sem o ganho):
+zpk(C_PI3)
+
+ans =
+ 
+  (s+2.5)
+  -------
+     s
+ 
+Continuous-time zero/pole/gain model.
+
+K_PI3
+K_PI3 =
+       3.7499
+U_PI3 = (K_PI3*C_PI3)/(1+K_PI3*C_PI3*G);
+zpk(U_PI3)
+
+ans =
+ 
+       3.7499 s (s+10) (s+2.5) (s+2) (s+1)
+  ----------------------------------------------
+  s (s+10.04) (s+2.086) (s^2 + 0.8748s + 0.4476)
+ 
+Continuous-time zero/pole/gain model.
+
+% Ação Derivativa...
+% Eq. do controlador (sem ganho):
+
+% Tenho a eq. do FTMA(s) da planta com o PD
+zpk(ftma_PD)
+
+ans =
+ 
+      (s+4.552)
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+% Falta ganho adotado para o PD:
+K_PD2
+K_PD2 =
+    40
+% Eq. completa do controlador PD:
+% $$
+% C(s)= 40  (s+4.552)
+% $$
+
+% reparo que temos variável do zero do PD:
+zero_c
+zero_c =
+      -4.5523
+U_PD2 = (K_PD2*poly(zero_c))/(1+K_PD2*ftma_PD);
+zpk(U_PD2)
+
+ans =
+ 
+  From input 1 to output:
+       40 (s+10) (s+2) (s+1)
+  --------------------------------
+  (s+6.776) (s^2 + 6.224s + 29.83)
+ 
+  From input 2 to output:
+     182.09 (s+10) (s+2) (s+1)
+  --------------------------------
+  (s+6.776) (s^2 + 6.224s + 29.83)
+ 
+Continuous-time zero/pole/gain model.
+
+poly(zero_c)
+ans =
+            1       4.5523
+U_PD2 = (K_PD2*(poly([zero_c])))/(1+K_PD2*ftma_PD);
+zpk(U_PD2)
+
+ans =
+ 
+  From input 1 to output:
+       40 (s+10) (s+2) (s+1)
+  --------------------------------
+  (s+6.776) (s^2 + 6.224s + 29.83)
+ 
+  From input 2 to output:
+     182.09 (s+10) (s+2) (s+1)
+  --------------------------------
+  (s+6.776) (s^2 + 6.224s + 29.83)
+ 
+Continuous-time zero/pole/gain model.
+
+(poly([zero_c]),1)
+ (poly([zero_c]),1)
+                
+{Error: Invalid expression. When calling a function or
+indexing a variable, use parentheses. Otherwise, check for
+mismatched delimiters.
+} 
+U_PD2 = (K_PD2*tf(poly(zero_c),1))/(1+K_PD2*ftma_PD);
+zpk(U_PD2)
+
+ans =
+ 
+  40 (s+4.552) (s+10) (s+2) (s+1)
+  --------------------------------
+  (s+6.776) (s^2 + 6.224s + 29.83)
+ 
+Continuous-time zero/pole/gain model.
+
+C_PD = tf(poly(zero_c),1)
+
+C_PD =
+ 
+  s + 4.552
+ 
+Continuous-time transfer function.
+
+U_PD2 = (K_PD2*C_PD)/(1+K_PD2*ftma_PD);
+zpk(U_PD2)
+
+ans =
+ 
+  40 (s+4.552) (s+10) (s+2) (s+1)
+  --------------------------------
+  (s+6.776) (s^2 + 6.224s + 29.83)
+ 
+Continuous-time zero/pole/gain model.
+
+step(U_K3, U_PI3, U_PD2)
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/step', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/engine/@DynamicSystem/step.m', 95)" style="font-weight:bold">DynamicSystem/step</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/engine/@DynamicSystem/step.m',95,0)">line 95</a>)
+Cannot simulate the time response of improper (non-causal)
+models.} 
+step(U_K3, U_PI3)
+legend('Prop', 'PI_3')
+save planta % guardando info para próximos projetos
+diary off
+% Faltar determinar $u(t)$ para o PD:
+% Lembrando de:
+% https://fpassold.github.io/Controle_2/Acoes_Controle_Erro/acoes_controle_erro.html
+
+% incoporar um degrau...
+degrau=tf(1,[1 0]);
+hold on % mantêm o grafico anterior
+impulse(degrau*U_PD2)
+legend('Prop', 'PI_3', 'PD_2')
+K_PD2
+K_PD2 =
+    40
+K_PD2*abs(zero_c)
+ans =
+       182.09
+title('Ação de controle (u(t))')
+
+% ## Duas curvas no mesmo gráfico
+
+% Supondo que num mesmo grafico eu queira
+% y(t) e u(t) para o PD_2
+[u_PD2,t_PD2]=impulse(degrau*U_PD2);
+[y_PD2,t]=step(ftmf_PD2);
+figure;
+plotyy(t,y_PD2,'b-', t_PD2,u_PD2,'m--')
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('feval')" style="font-weight:bold">feval</a>
+Function to evaluate must be represented as a string
+scalar, character vector, or function_handle object.
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotyy>fevalfun', '/Applications/Matlab_R2019b.app/toolbox/matlab/graph2d/plotyy.m', 385)" style="font-weight:bold">plotyy>fevalfun</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/matlab/graph2d/plotyy.m',385,0)">line 385</a>)
+    h = feval(func,x,y);
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotyy', '/Applications/Matlab_R2019b.app/toolbox/matlab/graph2d/plotyy.m', 78)" style="font-weight:bold">plotyy</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/matlab/graph2d/plotyy.m',78,0)">line 78</a>)
+[h1,ax(1)] = fevalfun(fun1,ax(1),x1,y1,caxspecified);} 
+plotyy(t,y_PD2, t_PD2,u_PD2)
+legend('y(t)', 'u(t)')
+
+% Gráficos:
+grid
+% ![acoes_contorle_Kp3_PI3_PD2.png](acoes_contorle_Kp3_PI3_PD2.png)
+
+% ![step_PD2_y_u.png](step_PD2_y_u.png)
+
+save planta % guardando info para próximos projetos
+diary off

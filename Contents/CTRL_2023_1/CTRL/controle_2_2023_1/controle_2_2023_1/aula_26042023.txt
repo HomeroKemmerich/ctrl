@@ -1,0 +1,285 @@
+% # Projeto de Controlador Proporcional
+
+% E se fosse calculado o valor do ganho em função do
+% $e(\infty)=10\%$ ?
+
+% Ref: https://fpassold.github.io/Controle_2/control2inf_2020_2/aula_10102022.html
+
+% Deduzindo o erro...
+
+% $e(\infty)=\dfrac{1}{1+K_p}$
+
+% $K_p = \lim_{s=0} FTMA(s)$
+
+% Entao:
+
+% 10% de 1,0 = entrada degrau (unitário), implica:
+
+% $0,1=\dfrac{1}{1+K_p}$
+
+% Isolando o $K_p$ teremos:
+
+% $K_p = \dfrac{1-0,1}{0,1}$
+
+Kp=(1-0.1)/0.1
+
+Kp =
+
+     9
+
+format compaq
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('format')" style="font-weight:bold">format</a>
+Invalid format option compaq.
+} 
+format compact % gasta menos linhas
+format shortG % mostra float só quando necessario
+
+% Então $\lim_{s \to 0} K \cdot FTMA(s) = K_p = 9$
+
+% Mas o limite pode ser calculado usando a função
+% `dcgain()`:
+
+dcgain(G)
+ans =
+         0.05
+1/20
+ans =
+         0.05
+
+% Então $K \cdot 1/20 = 9$
+
+K2=Kp/dcgain(G)
+K2 =
+   180
+
+% Note, antes:
+
+K
+K =
+    28
+OS
+OS =
+    10
+
+% Fechando malha com K2:
+
+ftmf2=feedback(K2*G,1);
+step(ftmf, ftmf2)
+legend('K=28', 'K=180')
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+{Unrecognized property 'OrientationMode' for class
+'matlab.graphics.shape.internal.PanelTip'.
+Error in matlab.graphics.shape.internal.PointDataTip/set.OrientationMode
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('linetip', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m', 39)" style="font-weight:bold">linetip</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/linetip.m',39,0)">line 39</a>)
+tip.OrientationMode='manual';
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.view/installtip>localLineButtonDown', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m', 37)" style="font-weight:bold">wrfc.view/installtip>localLineButtonDown</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@view/installtip.m',37,0)">line 37</a>)
+tip = linetip(EventSrc);} 
+Error while evaluating Line ButtonDownFcn.
+
+% ![step_K2.png](step_K2.png)
+
+stepinfo(ftmf2) % dados da resposta FMTF(s) para K2
+ans = 
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+        RiseTime: 0.30472
+    SettlingTime: 5.6914
+     SettlingMin: 0.58312
+     SettlingMax: 1.4176
+       Overshoot: 57.506
+      Undershoot: 0
+            Peak: 1.4176
+        PeakTime: 0.85619
+1.4176
+ans =
+       1.4176
+
+% Note que o *overshoot* calculado pelo Matlab é em relacao ao valor
+% de regime permanente atingido pela planta, não pela referência
+
+% Considerando isto, o $\%OS$ para o sistema usando $K_2=180$ é de:
+% $\%OS \cong 42\%$.
+
+% E o $\%OS% quando $K=28$ nem ocorreu, porque $y(max)=0,633$.
+
+% Para tentar alcançar um $\%OS \cong 10\%$ teríamos que trabalhar
+% com um ganho: $28 < K << 180$.
+
+% Testando o valor $K_3=100$:
+
+K3=100;
+ftmf3=feedback(K3*G,1);
+figure; step(ftmf3)
+grid
+
+% ![step3.png](step3.png)
+
+% Note que com $K_3=100$, obtivemos $y(max)=1,14$; isto significa
+% um $\%OS = 14\%$. Mas.... o erro aumentou...
+
+dcgain(ftmf3)
+ans =
+      0.83333
+erro3=(1-dcgain(ftmf3))/1*100
+erro3 =
+       16.667
+
+% ----
+
+% ## Controlador com Ação Integral Pura
+
+diary off
+
+% Equação do Integrador:
+
+% $C(s)=K_i \cdot \dfrac{1}{s}$
+
+% Note o polo na origem (em $s=0$) que é o próprio integrador.
+
+% Lembrando do $t_s$ do Controlador Proporcional com $K_3=100$,
+% $t_s = 4,19$ segundos. 
+
+% Suponha que queremos o $t_s$ do sistema com o Integrador Puro
+% abaixo do dobro do $t_s$ alcançado pelo controlador proporcional.
+
+ts_d=2*4.19
+ts_d =
+         8.38
+
+% Lembrando que queremos mantetr
+OS
+OS =
+    10
+
+C_I=tf(1,[1 0])
+
+C_I =
+ 
+  1
+  -
+  s
+ 
+Continuous-time transfer function.
+
+ftma_I = C_I*G
+
+ftma_I =
+ 
+               1
+  ----------------------------
+  s^4 + 13 s^3 + 32 s^2 + 20 s
+ 
+Continuous-time transfer function.
+
+zpk(ftma_I)
+
+ans =
+ 
+           1
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+figure; rlocus(ftma_I)
+hold on; sgrid(zeta, 0)
+
+% ![rlocus_I.png](rlocus_I.png)
+
+% Fazendo na zoom na região de interesse:
+
+axis([-1.5 0.5 -2 2])
+
+[K_I, polos_MF_I] = rlocfind(ftma_I)
+Select a point in the graphics window
+selected_point =
+      -0.3449 +    0.46855i
+K_I =
+       7.7916
+polos_MF_I =
+      -9.9891 +          0i
+      -2.3284 +          0i
+     -0.34124 +     0.4675i
+     -0.34124 -     0.4675i
+
+% ![rlocus_I_zoom.png](rlocus_I_zoom.png)
+
+% Fechando a malha...
+
+% ```Matlab
+ftmf_I = feedback(K_I*ftma_I, 1);
+figure; step(ftmf3, ftmf_I)
+legend('K_p=100', 'Integrador Puro')
+
+% ```
+
+% ![step_I.png](step_I.png)
+
+% Se $K_I$ fosse aumentado em 25% ?
+
+K_I2=K_I*1.25
+K_I2 =
+       9.7395
+
+ftma_I2 = C_I*G;
+ftmf_I2 = feedback(K_I2*ftma_I2, 1);
+figure; step(ftmf_I, ftmf_I2)
+legend('I (K_i=7.79)', 'I (K_i=9.74)')
+
+% ![step_I_I2.png](step_I_I2.png)
+
+save planta
+diary off

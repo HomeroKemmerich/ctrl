@@ -1,0 +1,176 @@
+hold on
+sgrid(zeta,0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+K_P = 1.41;
+ftmf_P = feedback(G*K_P, 1);
+erro_P = (1-dcgain(ftmf_P))/1*100
+
+erro_P =
+
+   41.4938
+
+Kp = 100/OS;
+t_p = 0.5;
+Kd = (1.2 * Kp * t_p) / (2 * t_p)
+
+Kd =
+
+    12
+
+K_D = 0.1 * Kp
+
+K_D =
+
+     2
+
+C_D = tf([K_D, 0], 1);
+C_PD = tf([K_D K_P], [1]);
+C_PD
+
+C_PD =
+ 
+  2 s + 1.41
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[2 1.4100]} ','     Denominator: {[0 1]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftma_PD = G * C_PD;
+rlocus(ftma_PD)
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+    delete(gcbf);] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+rlocus(ftma_PD)
+sgrid(zeta,0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+K_PD = 0.39;
+ftmf_PD = feedback(ftma_PD*K_PD, 1);
+figure; step(ftmf_PD)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+diary off

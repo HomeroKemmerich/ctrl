@@ -1,0 +1,304 @@
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+    delete(gcbf);] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+C_I = tf(1, [1 0]);
+C_I
+
+C_I =
+ 
+  1
+  -
+  s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 1]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftma_I = C_I * G
+
+ftma_I =
+ 
+                    0.4
+  ---------------------------------------
+  s^5 + s^4 + 4.29 s^3 + 2.42 s^2 + 0.2 s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 0 0 0.4000]} ','     Denominator: {[1 1 4.2900 2.4200 0.2000 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+zpk(ftma_I)
+
+ans =
+ 
+                 0.4
+  ----------------------------------
+  s (s+0.5) (s+0.1) (s^2 + 0.4s + 4)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0x1 double]} ','                P: {[5x1 double]} ','                K: 0.4000 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1x1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1x1 struct] ','            Notes: [0x1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+[K_I , polosMF] = rlocfind(ftma_I, 0.5)
+
+K_I =
+
+    3.3375
+
+
+polosMF =
+
+  -0.2415 + 1.9930i
+  -0.2415 - 1.9930i
+  -0.9079 + 0.0000i
+   0.1954 + 0.5715i
+   0.1954 - 0.5715i
+
+K_I
+
+K_I =
+
+    3.3375
+
+ftmf_I=feedback(K_I*G, 1);
+ figure; step(ftmf_I)
+C_PI = tf((K_P * [1, K_I/K_P), [1 0])
+ C_PI = tf((K_P * [1, K_I/K_P), [1 0])
+                             ↑
+{Invalid expression. When calling a function or indexing a variable, use parentheses. Otherwise, check for mismatched
+delimiters.
+} 
+C_PI = tf((K_P * [1, K_I/K_P]), [1 0])
+
+C_PI =
+ 
+  s + 3.338
+  ---------
+      s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 3.3375]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftma_PIa = C_PI * G;
+zpk(ftma_PIa)
+
+ans =
+ 
+            0.4 (s+3.338)
+  ----------------------------------
+  s (s+0.5) (s+0.1) (s^2 + 0.4s + 4)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[-3.3375]} ','                P: {[5x1 double]} ','                K: 0.4000 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1x1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1x1 struct] ','            Notes: [0x1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftmf_PIa = feedback(ftma_PIa, 1);
+C_PIb = tf([1 K_I/K_P], [1 0]);
+ftma_C_PIb = C_PIb * G;
+figure; rlocus(ftma_C_PIb)
+hold on; sgrid(zeta,0)
+figure; step(ftmf, ftmf_I, ftmf_PI1)
+{Unrecognized function or variable 'ftmf'.
+} 
+figure; step(ftmf_P, ftmf_I, ftmf_PIa)
+feedback(ftmf_PI);
+{Unrecognized function or variable 'ftmf_PI'.
+} 
+feedback(ftmf_PIa);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('InputOutputModel/feedback')" style="font-weight:bold">InputOutputModel/feedback</a>
+Not enough input arguments.
+} 
+figure; step(ftmf_PIa)
+C_PIb
+
+C_PIb =
+ 
+  s + 3.338
+  ---------
+      s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 3.3375]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+figure; step(ftmf_I)
+ftma_PI = C_PI * G
+
+ftma_PI =
+ 
+               0.4 s + 1.335
+  ---------------------------------------
+  s^5 + s^4 + 4.29 s^3 + 2.42 s^2 + 0.2 s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 0 0.4000 1.3350]} ','     Denominator: {[1 1 4.2900 2.4200 0.2000 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+C_PI
+
+C_PI =
+ 
+  s + 3.338
+  ---------
+      s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 3.3375]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftmf_PI = feedback(ftma_PI, 1)
+
+ftmf_PI =
+ 
+                   0.4 s + 1.335
+  -----------------------------------------------
+  s^5 + s^4 + 4.29 s^3 + 2.42 s^2 + 0.6 s + 1.335
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 0 0.4000 1.3350]} ','     Denominator: {[1 1 4.2900 2.4200 0.6000 1.3350]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+rlocus(ftmf_PI)
+stepinfo
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stepinfo')" style="font-weight:bold">stepinfo</a>
+The "stepinfo" command requires one or more input arguments. Type "help stepinfo" for more information.
+} 
+stepinfo(ftmf_PI)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: NaN
+    TransientTime: NaN
+     SettlingTime: NaN
+      SettlingMin: NaN
+      SettlingMax: NaN
+        Overshoot: NaN
+       Undershoot: NaN
+             Peak: Inf
+         PeakTime: Inf
+
+figure; step(ftmf_PI)
+stepinfo(ftmf_PI)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: NaN
+    TransientTime: NaN
+     SettlingTime: NaN
+      SettlingMin: NaN
+      SettlingMax: NaN
+        Overshoot: NaN
+       Undershoot: NaN
+             Peak: Inf
+         PeakTime: Inf
+
+ftma_C_PI = C_PI * G;
+figure; rlocus(C_PI) 
+hold on; sgrid(zeta,0)
+figure; step(ftmf_P, ftmf_I, ftmf_PI)
+[K_I , polosMF] = rlocfind(ftma_I)
+Select a point in the graphics window
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ginput>wfbp')" style="font-weight:bold">ginput>wfbp</a>
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ginput', '/MATLAB/toolbox/matlab/uitools/ginput.m', 74)" style="font-weight:bold">ginput</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/ginput.m',74,0)">line 74</a>)
+            keydown = wfbp;
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocfind', '/MATLAB/toolbox/control/ctrlanalysis/@DynamicSystem/rlocfind.m', 35)" style="font-weight:bold">DynamicSystem/rlocfind</a> (<a href="matlab: opentoline('/MATLAB/toolbox/control/ctrlanalysis/@DynamicSystem/rlocfind.m',35,0)">line 35</a>)
+   [re,im] = ginput(1);    % Get one point
+} 
+[K_I , polosMF] = rlocfind(ftma_I)
+Select a point in the graphics window
+sgrid(zeta, 0)
+rlocus(ftma_I)
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ctrluis.axesgroup.generic_listeners>LocalCleanUp', '/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgroup/generic_listeners.m', 140)" style="font-weight:bold">ctrluis.axesgroup.generic_listeners>LocalCleanUp</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgroup/generic_listeners.m',140,0)">line 140</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ctrluis.axesgrid/cla', '/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgrid/cla.m', 21)" style="font-weight:bold">ctrluis.axesgrid/cla</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgrid/cla.m',21,0)">line 21</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ltiplot', '/MATLAB/toolbox/shared/controllib/graphics/utils/ltiplot.m', 44)" style="font-weight:bold">ltiplot</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/utils/ltiplot.m',44,0)">line 44</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocusplot', '/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocusplot.m', 96)" style="font-weight:bold">DynamicSystem/rlocusplot</a> (<a href="matlab: opentoline('/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocusplot.m',96,0)">line 96</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocus', '/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocus.m', 63)" style="font-weight:bold">DynamicSystem/rlocus</a> (<a href="matlab: opentoline('/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocus.m',63,0)">line 63</a>)] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ctrluis.axesgroup/generic_listeners>LocalCleanUp', '/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgroup/generic_listeners.m', 140)" style="font-weight:bold">ctrluis.axesgroup/generic_listeners>LocalCleanUp</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgroup/generic_listeners.m',140,0)">line 140</a>)
+delete(h.UIContextMenu(ishandle(h.UIContextMenu)))] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ctrluis.axesgroup.generic_listeners>LocalCleanUp', '/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgroup/generic_listeners.m', 140)" style="font-weight:bold">ctrluis.axesgroup.generic_listeners>LocalCleanUp</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgroup/generic_listeners.m',140,0)">line 140</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ctrluis.axesgrid/cla', '/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgrid/cla.m', 21)" style="font-weight:bold">ctrluis.axesgrid/cla</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/@ctrluis/@axesgrid/cla.m',21,0)">line 21</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ltiplot', '/MATLAB/toolbox/shared/controllib/graphics/utils/ltiplot.m', 44)" style="font-weight:bold">ltiplot</a> (<a href="matlab: opentoline('/MATLAB/toolbox/shared/controllib/graphics/utils/ltiplot.m',44,0)">line 44</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocusplot', '/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocusplot.m', 96)" style="font-weight:bold">DynamicSystem/rlocusplot</a> (<a href="matlab: opentoline('/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocusplot.m',96,0)">line 96</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocus', '/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocus.m', 63)" style="font-weight:bold">DynamicSystem/rlocus</a> (<a href="matlab: opentoline('/MATLAB/toolbox/control/ctrldesign/@DynamicSystem/rlocus.m',63,0)">line 63</a>)] 
+sgrid(zeta, 0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[K_I , polosMF] = rlocfind(ftma_I)
+Select a point in the graphics window
+
+selected_point =
+
+   0.0001 + 0.2180i
+
+
+K_I =
+
+    0.2819
+
+
+polosMF =
+
+  -0.2035 + 1.9900i
+  -0.2035 - 1.9900i
+  -0.5936 + 0.0000i
+   0.0003 + 0.2179i
+   0.0003 - 0.2179i
+
+K_I
+
+K_I =
+
+    0.2819
+
+ftmf_I=feedback(K_I*G, 1);
+figure; step(ftmf_I)
+C_PI = tf((K_P * [1, K_I/K_P]), [1 0])
+
+C_PI =
+ 
+  s + 0.2819
+  ----------
+      s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 0.2819]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>

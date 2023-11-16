@@ -1,0 +1,71 @@
+% # Controlador PI
+% 
+% Equaçao do controlador
+%
+% $G(s) = K_p + \dfrac{K_i}{s} = \dfrac{K_p \left (s + \dfrac{K_i}{K_p} \right)}{s} $
+%
+% ...
+%
+%C_PI = tf([1 0.5], [1 0]);
+%FTMA_PI = C_PI*G;
+FTMA_PI = C_PI*G;
+zpk(FTMA_PI)
+
+ans =
+ 
+        (s+0.5)
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[-0.5000]} ','                P: {[4×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+% Traçando o Root Locus
+rlocus(FTMA_PI)
+[Warning: MATLAB has disabled some advanced graphics rendering features by switching to software OpenGL. For more
+information, click <a href="matlab:opengl('problems')">here</a>.] 
+hold on; sgrid(zeta, 0)
+C_PI3 = tf([1 2.5], [1 0]);
+FTMA_PI3=C_PI3*G;
+zpk(FTMA_PI3)
+
+ans =
+ 
+        (s+2.5)
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[-2.5000]} ','                P: {[4×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+figure; rlocus(FTMA_PI3)
+hold on; sgrid(zeta, 0)
+figure; rlocus(FTMA_PI3)
+hold on; sgrid(zeta, 0)
+% Sincronizando os controladores
+[K_PI, polosMF_PI] = rlocfind(FTMA_PI)
+Select a point in the graphics window
+
+selected_point =
+
+  -1.0870 + 1.7378i
+
+
+K_PI =
+
+   34.6614
+
+
+polosMF_PI =
+
+ -10.4164 + 0.0000i
+  -1.0950 + 1.7398i
+  -1.0950 - 1.7398i
+  -0.3937 + 0.0000i
+
+% Fechando a malha
+FTMF_PI = feedback(K_PI*FTMA_PI, 1);
+FTMF_PI3= feedback(K_PI3*FTMA_PI3, 1);
+{Unrecognized function or variable 'K_PI3'.
+} 
+FTMF_PI3= feedback(K_PI3*FTMA_PI3, 1);
+{Unrecognized function or variable 'K_PI3'.
+} 

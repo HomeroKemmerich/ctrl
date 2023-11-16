@@ -1,0 +1,29 @@
+format compact
+format shortG
+
+% Teste
+dcgain(G)
+% # Equação do integrador
+% $C(s) = K_i \cdot \dfrac{1}{s}$
+% Polo na origem (em $s = 0$) é o próprio integrador.% $t_s$ do Controlador Proporcional com $K_3 = 100$
+% $t_s = 4,19$ segundos
+% Suponha que queremos calcularo o $t_s$ do sistema com Integrador Puro
+% abaixo do dobro do $t_s$ alcançado pelo controlador proporcional
+t_s_d = 2*4.19;
+t_s_d
+OS
+% $C_I$: controlador integrador
+C_I = tf(1, [1,0])
+FTMA_I = C_I*G
+figure; rlocus(FTMA_I)
+hold on; sgrid(zeta, 0)
+[K_I, polos_MF_I] = rlocfind(FTMA_I)
+
+
+FTMA_I2 = C_I*G;
+K_I2 = K_I*1.25;
+FTMF_I2=feedback(K_I2*FTMA_I2, 1);
+figure; step(FTMF_I, FTMF_I2)
+legend('I (K_I=7.79)', 'I (K_I = 9.74')
+save planta.mat
+diary off

@@ -1,0 +1,556 @@
+G=tf(320*K, [2 8 20])
+{Unrecognized function or variable 'K'.
+} 
+load symbolic
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('load')" style="font-weight:bold">load</a>
+Unable to find file or directory 'symbolic'.
+} 
+syms K
+G=tf(320*K, [2 8 20])
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('tf')" style="font-weight:bold">tf</a>
+The values of the "Numerator" and "Denominator" properties must be row vectors or cell arrays of row vectors, where each
+vector is nonempty and containing numeric data. Type "help tf.num" or "help tf.den" for more information.
+} 
+G=tf(320, [2 8 20])
+
+G =
+ 
+        320
+  ----------------
+  2 s^2 + 8 s + 20
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 320]} ','     Denominator: {[2 8 20]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+G=tf(320, poly([-2 -8 -20]))
+
+G =
+ 
+             320
+  --------------------------
+  s^3 + 30 s^2 + 216 s + 320
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 320]} ','     Denominator: {[1 30 216 320]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+zpk(G)
+
+ans =
+ 
+         320
+  ------------------
+  (s+20) (s+8) (s+2)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0x1 double]} ','                P: {[3x1 double]} ','                K: 320 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1x1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1x1 struct] ','            Notes: [0x1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+rlocus(G)
+OS=20;
+zeta== (-log(OS/100))/(sqrt(pi^2+(log(OS/100)^2)));
+{Unrecognized function or variable 'zeta'.
+} 
+zeta=(-log(OS/100))/(sqrt(pi^2+(log(OS/100)^2)));
+hold on
+sgrid(zeta, 0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+K=2.97;
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resetplotview>localApplyViewInfo', '/MATLAB/toolbox/matlab/graphics/resetplotview.m', 181)" style="font-weight:bold">resetplotview>localApplyViewInfo</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/resetplotview.m',181,0)">line 181</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resetplotview>localResetPlotView', '/MATLAB/toolbox/matlab/graphics/resetplotview.m', 89)" style="font-weight:bold">resetplotview>localResetPlotView</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/resetplotview.m',89,0)">line 89</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resetplotview', '/MATLAB/toolbox/matlab/graphics/resetplotview.m', 48)" style="font-weight:bold">resetplotview</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/resetplotview.m',48,0)">line 48</a>)
+In matlab.graphics.controls.internal.resetHelper
+In matlab.graphics.controls.internal.ToolbarButtonRegistry>@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('hgfeval', '/MATLAB/toolbox/matlab/graphics/hgfeval.m', 62)" style="font-weight:bold">hgfeval</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/hgfeval.m',62,0)">line 62</a>)
+In matlab.ui.controls/ToolbarPushButton/processActionEvent
+In matlab.graphics.controls.AxesToolbarButton>@(varargin)obj.processActionEvent(varargin{:})
+In matlab.graphics.shape.internal/Button/sendActionEvent
+In matlab.graphics.shape.internal.Button>@(varargin)obj.sendActionEvent(varargin{:})] 
+ftmf=feedback(K*G,1)
+
+ftmf =
+ 
+             950.4
+  ---------------------------
+  s^3 + 30 s^2 + 216 s + 1270
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 950.4000]} ','     Denominator: {[1 30 216 1.2704e+03]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+figure; step(ftmf)
+stepinfo(ftmf)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: 0.2278
+    TransientTime: 1.1542
+     SettlingTime: 1.1542
+      SettlingMin: 0.6787
+      SettlingMax: 0.8800
+        Overshoot: 17.6353
+       Undershoot: 0
+             Peak: 0.8800
+         PeakTime: 0.5283
+
+OS=5;
+zeta=(-log(OS/100))/(sqrt(pi^2+(log(OS/100)^2)));
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+    delete(gcbf);] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+rlocus(G)
+sgrid(zeta, 0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+K=1.41;
+ftmf=feedback(K*G,1)
+
+ftmf =
+ 
+             451.2
+  ----------------------------
+  s^3 + 30 s^2 + 216 s + 771.2
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 451.2000]} ','     Denominator: {[1 30 216 771.2000]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+figure; step(ftmf)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+stepinfo(ftmf)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: 0.3707
+    TransientTime: 1.0506
+     SettlingTime: 1.0506
+      SettlingMin: 0.5308
+      SettlingMax: 0.6112
+        Overshoot: 4.4641
+       Undershoot: 0
+             Peak: 0.6112
+         PeakTime: 0.7967
+
+dcgain(ftmf)
+
+ans =
+
+    0.5851
+
+erro=(1-dcgain(ftmf))/1*100
+
+erro =
+
+   41.4938
+
+K_P = K
+
+K_P =
+
+    1.4100
+
+ftmf_P = ftmf;
+t_s = 1.05;
+C_I = tf(1, [1 0])
+
+C_I =
+ 
+  1
+  -
+  s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 1]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftma_I = C_I * G;
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+    delete(gcbf);] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+rlocus(ftma_I)
+hold on
+sgrid(zeta,0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+K_I = 0,77;
+
+K_I =
+
+     0
+
+ftmf_I=feedback(ftma_I*K_I,1)
+
+ftmf_I =
+ 
+  0
+ 
+Static gain.
+<a href="matlab:disp(char('','       Numerator: {[0]} ','     Denominator: {[1]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+figure; step(ftmf_I)
+K_I = 0.77;
+ftmf_I=feedback(ftma_I*K_I,1)
+
+ftmf_I =
+ 
+                  246.4
+  --------------------------------------
+  s^4 + 30 s^3 + 216 s^2 + 320 s + 246.4
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 0 246.4000]} ','     Denominator: {[1 30 216 320 246.4000]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+figure; step(ftmf_I)
+stepinfo(ftmf_I)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: 1.7410
+    TransientTime: 5.1201
+     SettlingTime: 5.1201
+      SettlingMin: 0.9047
+      SettlingMax: 1.0514
+        Overshoot: 5.1359
+       Undershoot: 0
+             Peak: 1.0514
+         PeakTime: 3.7125
+
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+    delete(gcbf);] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+erro=(1-dcgain(ftmf_I))/1*100
+
+erro =
+
+     0
+
+C_PI = K_P + tf(K_I, [1 0])
+
+C_PI =
+ 
+  1.41 s + 0.77
+  -------------
+        s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1.4100 0.7700]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftma_PI = C_PI * G;
+rlocus(ftma_PI)
+sgrid(zeta,0)
+[K_PI,polosMF_PI]=rlocfind(ftma_PI)
+Select a point in the graphics window
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ginput>wfbp')" style="font-weight:bold">ginput>wfbp</a>
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ginput', '/MATLAB/toolbox/matlab/uitools/ginput.m', 74)" style="font-weight:bold">ginput</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/ginput.m',74,0)">line 74</a>)
+            keydown = wfbp;
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocfind', '/MATLAB/toolbox/control/ctrlanalysis/@DynamicSystem/rlocfind.m', 35)" style="font-weight:bold">DynamicSystem/rlocfind</a> (<a href="matlab: opentoline('/MATLAB/toolbox/control/ctrlanalysis/@DynamicSystem/rlocfind.m',35,0)">line 35</a>)
+   [re,im] = ginput(1);    % Get one point
+} 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[K_PI,polosMF_PI]=rlocfind(ftma_PI)
+Select a point in the graphics window
+
+selected_point =
+
+  -3.9611 + 4.1249i
+
+
+K_PI =
+
+    1.0335
+
+
+polosMF_PI =
+
+ -21.6870 + 0.0000i
+  -3.9779 + 4.1293i
+  -3.9779 - 4.1293i
+  -0.3572 + 0.0000i
+
+ftmf_PI = feedback(ftma_PI*K_PI, 1)
+
+ftmf_PI =
+ 
+              466.3 s + 254.7
+  ----------------------------------------
+  s^4 + 30 s^3 + 216 s^2 + 786.3 s + 254.7
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 466.3218 254.6580]} ','     Denominator: {[1 30 216 786.3218 254.6580]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+figure; step(ftmf_PI)
+stepinfo(ftmf_PI)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: 3.6110
+    TransientTime: 8.2681
+     SettlingTime: 8.2681
+      SettlingMin: 0.9004
+      SettlingMax: 0.9988
+        Overshoot: 0
+       Undershoot: 0
+             Peak: 0.9988
+         PeakTime: 16.1845
+
+[Warning: Setting the "UIContextMenu" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+[Warning: Error executing listener callback for PostSet event on UIContextMenu dynamic property in object of
+matlab.graphics.axis.Axes class:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.axis.Axes/set')" style="font-weight:bold">matlab.graphics.axis.Axes/set</a>
+Cannot set property to a deleted object.
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings/localModeRestore
+
+Error in matlab.graphics.interaction.internal.WebAxesModeWarnings
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+    delete(gcbf);] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('closereq', '/MATLAB/toolbox/matlab/graphics/closereq.m', 18)" style="font-weight:bold">closereq</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/graphics/closereq.m',18,0)">line 18</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller/FigureController/windowClosed', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m', 875)" style="font-weight:bold">matlab.ui.internal.controller/FigureController/windowClosed</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/FigureController.m',875,0)">line 875</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 157)" style="font-weight:bold">matlab.ui.internal.controller.platformhost/EmbeddedFigurePlatformHost/handleMessage</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)" style="font-weight:bold">matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m',73,0)">line 73</a>)
+In message.internal.executeCallback] 
+matlab.internal.language.introspective.errorDocCallback('matlab.ui.internal.controller.platformhost.EmbeddedFigurePlatformHost>@(data)this.handleMessage(data)', '/MATLAB/toolbox/matlab/uitools/uicomponents/components/+matlab/+ui/+internal/+controller/+platformhost/EmbeddedFigurePlatformHost.m', 73)
+erro=(1-dcgain(ftmf_I))/1*100
+
+erro =
+
+     0
+
+erro_PI=(1-dcgain(ftmf_PI))/1*100
+
+erro_PI =
+
+     0
+
+Kp = K_P * 0.5;
+Ki = (1/t_s) * K_P * 0.25;
+ftma_pi = pid(Kp, Ki)
+
+ftma_pi =
+ 
+             1 
+  Kp + Ki * ---
+             s 
+
+  with Kp = 0.705, Ki = 0.336
+ 
+Continuous-time PI controller in parallel form.
+<a href="matlab:disp(char('','              Kp: 0.7050 ','              Ki: 0.3357 ','              Kd: 0 ','              Tf: 0 ','        IFormula: '''' ','        DFormula: '''' ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftmf_pi = (ftma_pi * G, 1);
+ ftmf_pi = (ftma_pi * G, 1);
+                       ↑
+{Invalid expression. When calling a function or indexing a variable, use parentheses. Otherwise, check for mismatched
+delimiters.
+} 
+ftmf_pi = feedback(ftma_pi * G, 1);
+step(ftmf_pi)
+ftmf_P
+
+ftmf_P =
+ 
+             451.2
+  ----------------------------
+  s^3 + 30 s^2 + 216 s + 771.2
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 451.2000]} ','     Denominator: {[1 30 216 771.2000]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+G
+
+G =
+ 
+             320
+  --------------------------
+  s^3 + 30 s^2 + 216 s + 320
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 320]} ','     Denominator: {[1 30 216 320]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+zpk(G)
+
+ans =
+ 
+         320
+  ------------------
+  (s+20) (s+8) (s+2)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0x1 double]} ','                P: {[3x1 double]} ','                K: 320 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1x1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1x1 struct] ','            Notes: [0x1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftmf_P
+
+ftmf_P =
+ 
+             451.2
+  ----------------------------
+  s^3 + 30 s^2 + 216 s + 771.2
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 451.2000]} ','     Denominator: {[1 30 216 771.2000]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+zpk(ftmf_P)
+
+ans =
+ 
+               451.2
+  --------------------------------
+  (s+21.68) (s^2 + 8.323s + 35.58)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0x1 double]} ','                P: {[3x1 double]} ','                K: 451.2000 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1x1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1x1 struct] ','            Notes: [0x1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+Kp=100/OS;
+t_p = 0.5;
+Kd = (1.2 * Kp * t_p) / (2 * t_p)
+
+Kd =
+
+    12
+
+K_D = 0.1 * Kd
+
+K_D =
+
+    1.2000
+
+C_D = tf([K_D, 0], 1)
+
+C_D =
+ 
+  1.2 s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1.2000 0]} ','     Denominator: {[0 1]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+ftma_D = K_D * G;
+rlocus(ftma_D)
+sgrid(zeta, 0)
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 
+[Warning: Setting the "ButtonDownFcn" property is not permitted while this mode is active.] 
+[> In matlab.graphics.interaction.internal/WebAxesModeWarnings/localModeWarn
+In matlab.graphics.interaction.internal.WebAxesModeWarnings
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter
+In matlab.graphics.interaction.webmodes.figureModeInteractionOnEnter] 

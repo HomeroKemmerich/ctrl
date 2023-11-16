@@ -1,0 +1,267 @@
+% # Controlador PI (1)
+
+% Equação do controlador:
+
+%% $C(s)=K_p+\dfrac{K_i}{s}=\dfrac{K_p \left( s + \dfrac{K_i}{K_p) \right)}{s}$
+
+% Ou simplesmente:
+
+% $C(s)=\dfrac{K(s+z)}{s}$
+
+% Note o pólo na origem (em $s=0$) e a presença de um zero.
+
+% Questão: - Onde colocar este zero?
+
+% Por exemplo, se o zero estivesse em $s= -0,5$? O que acontece?
+
+% ````atlab
+C_PI = tf([1 0.5],[1 0])
+
+C_PI =
+ 
+  s + 0.5
+  -------
+     s
+ 
+Continuous-time transfer function.
+
+ftma_PI = PI*G;
+{Unrecognized function or variable 'PI'.
+} 
+ftma_PI = C_PI*G;
+zpk(ftma_PI)
+
+ans =
+ 
+        (s+0.5)
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+% traçando RL deste sistema...
+rlocus(ftma_PI)
+hold on; sgrid(zeta,0)
+% ```
+`
+ `
+ 
+{Error: Invalid text character. Check for unsupported symbol,
+invisible character, or pasting of non-ASCII characters.
+} 
+% ![RL_PI1.png](RL_PI1.png)
+
+% bla-bla-bla
+
+% Analisando o caso do "PI 3", com o zero em $s= -2,5$.
+
+C_PI3 = tf([1 2.5],[1 0])
+
+C_PI3 =
+ 
+  s + 2.5
+  -------
+     s
+ 
+Continuous-time transfer function.
+
+ftma_PI3 = C_PI3*G;
+zpk(ftma_PI3)
+
+ans =
+ 
+        (s+2.5)
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+figure; rlocus(ftma_PI3)
+hold on; sgrid(zeta,0)
+
+% ![rlocus_PI3.png](rlocus_PI3.png)
+
+% Comparando os 2 RLs... bla-bla-bla...
+
+% Supondo que estou "sintonizando" os controladores...
+
+[K_PI,polosMF_PI]=rlocfind(ftma_PI)
+Select a point in the graphics window
+
+selected_point =
+
+  -1.1431 + 1.4107i
+
+
+K_PI =
+
+   24.5830
+
+
+polosMF_PI =
+
+ -10.3028 + 0.0000i
+  -1.1724 + 1.4180i
+  -1.1724 - 1.4180i
+  -0.3524 + 0.0000i
+
+
+% ![RL_PI1b.png](RL_PI1b.png)
+
+[K_PI3,polosMF_PI3]=rlocfind(ftma_PI3)
+Select a point in the graphics window
+
+selected_point =
+
+  -0.4205 + 0.5044i
+
+
+K_PI3 =
+
+    3.7499
+
+
+polosMF_PI3 =
+
+ -10.0388 + 0.0000i
+  -2.0864 + 0.0000i
+  -0.4374 + 0.5062i
+  -0.4374 - 0.5062i
+
+% ![rlocus_PI3b.png](rlocus_PI3b.png)
+
+% Fechando a malha para cada controlador...
+
+ftmf_PI = feedback(K_PI*ftma_PI, 1);
+ftmf_PI3 = feedback(K_PI3*ftma_PI3, 1);
+
+figure; step(ftmf_PI, ftmf_PI3)
+legend('PI', 'PI3')
+
+% ![step_PI_PI3.png](step_PI_PI3.png)
+
+save planta
+diary off
+
+% ## Variando o PI
+
+% Testando outros 2 PI's:
+
+% * PI5 $\longrightarrow$ zero em $s= -0,9$;
+% * PI6 $\longrightarrow$ zero em $s= -1$ (cancelando o polo + lento da planta)
+
+C_PI5 = tf([1 0.9],[1 0])
+
+C_PI5 =
+ 
+  s + 0.9
+  -------
+     s
+ 
+Continuous-time transfer function.
+
+C_PI6 = tf([1 1],[1 0])
+
+C_PI6 =
+ 
+  s + 1
+  -----
+    s
+ 
+Continuous-time transfer function.
+
+ftma_PI5 = C_PI5*G;
+ftma_PI6 = C_PI6*G;
+
+% Ressaltando o que acontece com o PI6:
+
+zpk(ftma_PI6)
+
+ans =
+ 
+         (s+1)
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+figure; rlocus(ftma_PI5)
+hold on; sgrid(zeta,0)
+axis([-11 1 -2 2])
+[K_PI5,polosMF_PI5]=rlocfind(ftma_PI5)
+Select a point in the graphics window
+selected_point =
+     -0.94787 +     1.2755i
+K_PI5 =
+       24.024
+polosMF_PI5 =
+      -10.285 +          0i
+     -0.93708 +     1.2736i
+     -0.93708 -     1.2736i
+     -0.84087 +          0i
+
+% ![rlocus_PI5.png](rlocus_PI5.png)
+
+% Fechando a malha e verificando resposta obtida...
+
+ftmf_PI5 = feedback(K_PI5*ftma_PI5, 1);
+
+figure;step(ftmt_PI, ftmf_PI5)
+{Unrecognized function or variable 'ftmt_PI'.} 
+figure;step(ftmf_PI, ftmf_PI5)
+legend('PI', 'PI5')
+
+% ![step_PI_PI5.png](step_PI_PI5.png)
+
+figure;step(ftmf3, ftmf_PI, ftmf_PI5)
+legend('Kp=100 (K3)','PI', 'PI3')
+legend('Kp=100 (K3)','PI', 'PI5')
+
+% ![step_K3_PI_PI5.png](step_K3_PI_PI5.png)
+
+% bla-bla-bla
+
+% Voltando a atenção para o PI6:
+
+figure; rlocus(ftma_PI6)
+axis([-11 1 -2 2])
+axis([-11 1 -2 2])
+hold on; sgrid(zeta,0)
+[K_PI6,polosMF_PI6]=rlocfind(ftma_PI6)
+Select a point in the graphics window
+selected_point =
+     -0.86256 +     1.2012i
+K_PI6 =
+       22.547
+polosMF_PI6 =
+      -10.266 +          0i
+     -0.86714 +     1.2018i
+     -0.86714 -     1.2018i
+           -1 +          0i
+
+% ![rlocus_PI6.png](rlocus_PI6.png)
+
+% | RL PI | RL PI5 |
+% | :---: | :---: |
+% | ![PI](RL_PI1b.png) | ![rlocus_PI6.png](rlocus_PI6.png) |
+
+ftmf_PI6 = feedback(K_PI6*ftma_PI6, 1);
+figure; step(ftmf2, ftmf_PI, ftmf_PI6)
+legend('Kp=180 (K2)','PI', 'PI6')
+
+% ![step_K2_PI_PI6.png](step_K2_PI_PI6.png)
+
+% legend('Kp=180 (K2)','PI5', 'PI6')
+figure; step(ftmf2, ftmf_PI5, ftmf_PI6)
+legend('Kp=180 (K2)','PI5', 'PI6')
+
+% ![step_K2_PI5_PI6.png](step_K2_PI5_PI6.png)
+
+% A titulo de curiosidade:
+
+% | RL PI5 | RL PI6 |
+% | :---: | :---: |
+% | ![PI5](rlocus_PI5.png) | ![PI6](rlocus_PI6.png) |
+
+save planta
+diary off

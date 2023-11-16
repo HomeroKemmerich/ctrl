@@ -1,0 +1,211 @@
+load('planta.mat')
+% requisitos -> e(infinito) <= 10
+% OS <= 10
+% definir $t_{s_d}$
+
+%% Relembrando...
+step(ftmf_PI3, ftmf_PI5, ftmf_PI6)
+[Warning: MATLAB has disabled some advanced graphics rendering features by switching to software OpenGL. For more
+information, click <a href="matlab:opengl('problems')">here</a>.] 
+legend('PI3', 'PI5', 'PI6')
+% melhor PI -> 3.77s < t_s < 4.05s
+% $t_{s_d} = 3,8$ segundos
+t_s_d = 3.8;
+
+OS
+
+OS =
+
+    10
+
+zzeta
+{Unrecognized function or variable 'zzeta'.
+} 
+zeta
+
+zeta =
+
+    0.5912
+
+wn = 4 / (zeta*t_s_d)
+
+wn =
+
+    1.7806
+
+wd = wn*sqrt(1-zeta^2)
+
+wd =
+
+    1.4362
+
+sigma = wn*zeta
+
+sigma =
+
+    1.0526
+
+polos_mf=[-sigma+i*wd -sigma-i*wd]
+
+polos_mf =
+
+  -1.0526 + 1.4362i  -1.0526 - 1.4362i
+
+new_PI_aux=tf([1], [1 0])
+
+new_PI_aux =
+ 
+  1
+  -
+  s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 1]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+ftma_PI5_aux=PI5_aux*G;
+{Unrecognized function or variable 'PI5_aux'.
+} 
+ftma_new_PI_aux=new_PI_aux*G;
+zpk(ftma_new_PI_aux)
+
+ans =
+ 
+           1
+  --------------------
+  s (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[4×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+figure; pzmap(ftma_new_PI_aux)
+hold on;
+plot(polos_mf, 'r+')
+axis([-11 1 -2 2])
+figure; pzmap(ftma_new_PI_aux)
+hold on
+plot(polos_mf, 'r+')
+axis([-11 1 -2 2])
+% rlocus_new_PI
+theta1=atan2(wd,-1)
+
+theta1 =
+
+    2.1790
+
+% em radianos
+theta1_deg=theta1*180/pi
+
+theta1_deg =
+
+  124.8491
+
+
+theta2=pi/2;
+theta2_deg=theta2*180/pi
+
+theta2_deg =
+
+    90
+
+theta3=atan2(wd,1)
+
+theta3 =
+
+    0.9626
+
+theta3_deg=theta3*180/pi
+
+theta3_deg =
+
+   55.1509
+
+theta4=atan2(wd,9)
+
+theta4 =
+
+    0.1582
+
+theta4_deg=theta4*180/pi
+
+theta4_deg =
+
+    9.0666
+
+sum_theta=theta1+theta2+theta3+theta4
+
+sum_theta =
+
+    4.8706
+
+sum_theta_deg=sum_theta*180/pi
+
+sum_theta_deg =
+
+  279.0666
+
+theta_zera=360-sum_theta_deg
+
+theta_zera =
+
+   80.9334
+
+theta_zero=2*pi-sum_theta
+
+theta_zero =
+
+    1.4126
+
+delta_x=wd/tan(theta_zero)
+
+delta_x =
+
+    0.2292
+
+zero_new_PI_b=-1+delta_x
+
+zero_new_PI_b =
+
+   -0.7708
+
+new_PI_b=tf([1 -zero_PI5b],[1 0])
+{Unrecognized function or variable 'zero_PI5b'.
+} 
+new_PI_b=tf([1 -zero_PI5b],[1 0])
+{Unrecognized function or variable 'zero_PI5b'.
+} 
+new_PI_b=tf([1 -zero_new_PI_b],[1 0])
+
+new_PI_b =
+ 
+  s + 0.7708
+  ----------
+      s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 0.7708]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+figure; rlocus(ftma_new_PI_aux)
+hold on
+sgrid(zeta,0)
+
+plot(polos_mf, 'g+')
+zero_new_PI_b=-sigma+delta_x
+
+zero_new_PI_b =
+
+   -0.8235
+
+new_PI_b=tf([1 -zero_new_PI_b],[1 0])
+
+new_PI_b =
+ 
+  s + 0.8235
+  ----------
+      s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 0.8235]} ','     Denominator: {[1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+figure; rlocus(ftma_new_PI_aux)
+hold on
+sgrid(zeta,0)
+plot(polos_mf, 'g+')
+figure; rlocus(ftma_new_PI_aux)
+hold on
+sgrid(zeta,0)

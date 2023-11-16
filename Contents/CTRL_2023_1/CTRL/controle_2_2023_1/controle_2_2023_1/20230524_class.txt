@@ -1,0 +1,327 @@
+diary off
+zpk(G)
+
+ans =
+ 
+          1
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[3×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+% Controlador Proporcional
+K3
+
+K3 =
+
+   100
+
+step(ftmf3)
+[Warning: MATLAB has disabled some advanced graphics rendering features by switching to software OpenGL. For more
+information, click <a href="matlab:opengl('problems')">here</a>.] 
+stepinfo(ftmf3)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: 0.4255
+    TransientTime: 4.1872
+     SettlingTime: 4.1872
+      SettlingMin: 0.7154
+      SettlingMax: 1.1394
+        Overshoot: 36.7272
+       Undershoot: 0
+             Peak: 1.1394
+         PeakTime: 1.1092
+
+ts_d=4.1872/3
+
+ts_d =
+
+    1.3957
+
+ts_d=1.4
+
+ts_d =
+
+    1.4000
+
+find_polo_zero
+Error: expected a tf named "ftma_aux"!
+ 
+ftma_aux: A partial transfer function, containing the TF plant,
+G(s), and the partial tf of the controller, C_aux(s).
+ 
+Example_1: You want to design a PI and want to find out
+           the best place for the zero of the pi, then:
+           >> c_aux = tf(1, [1 0]);
+           >> ftma_aux = c_aux * G;
+ 
+Example_2: You want to design a PD and want to find out
+           the best place for the zero of the PD, then:
+           >> c_aux = tf(1, 1);
+           >> ftma_aux = c_aux * G;
+ 
+Aborting...
+ftma_aux = G
+
+ftma_aux =
+ 
+             1
+  ------------------------
+  s^3 + 13 s^2 + 32 s + 20
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 1]} ','     Denominator: {[1 13 32 20]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+find_polo_zero
+
+Routine to determine the position of the pole or zero
+that is missing to complete controller design
+
+%OS$ (desired Overshoot, in %): ? 10
+  ts_d (desired settling time): ? 1.4
+Desired MF poles must be located at:
+	s = -2.85714 ± j3.89822
+
+Evaluating the pole(s) contribution angle(s):
+  Pole 1) in s=-10 + j(0)	| angle: 28.62^o
+  Pole 2) in s=-2 + j(0)	| angle: 102.40^o
+  Pole 3) in s=-1 + j(0)	| angle: 115.47^o
+			Sum(angle{poles}) = 246.50^o
+
+Evaluating the zero(s) contribution angle(s):
+			Sum(angle{zeros}) = 0.00^o
+
+Determining pole or zero location of the controller:
+Select: [p]=pole or [z]=zero, for the controller ? z
+
+Angle contribution required for controller: 66.50^o
+This means that the controller 
+	ZERO must be at s = -4.5523
+
+To finish the project, note that:
+
+ftma =
+ 
+      (s+4.552)
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[-4.5523]} ','                P: {[3×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+Find the controller gain with the command:
+
+	>> K_ = rlocfind(ftma)
+
+zpk(ftma)
+
+ans =
+ 
+      (s+4.552)
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[-4.5523]} ','                P: {[3×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+ftma_pd=ftma;
+K_pd = rlocfind(ftma)
+Select a point in the graphics window
+
+selected_point =
+
+   0.9218 +32.8173i
+
+
+K_pd =
+
+   1.1259e+03
+
+K_pd = rlocfind(ftma)
+Select a point in the graphics window
+
+selected_point =
+
+  -2.8627 + 3.9181i
+
+
+K_pd =
+
+   33.2130
+
+ftmf_pd = feedback(K_pd*ftma_pd, 1)
+
+ftmf_pd =
+ 
+          33.213 (s+4.552)
+  --------------------------------
+  (s+7.268) (s^2 + 5.732s + 23.55)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[-4.5523]} ','                P: {[3×1 double]} ','                K: 33.2130 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+figure;
+figure; step(ftmf_pd)
+erro = ((1-dcgain(ftmf_pd))/1)*100
+
+erro =
+
+   11.6825
+
+K_pd2=40
+
+K_pd2 =
+
+    40
+
+ftmf_pd2=feedback(K_pd2*ftma_pd,1);
+figure, step(ftmf_pd, ftmf_pd2)
+title ('Step response (PD)')
+legend('K_pd = 33.21', 'K_pd2 = 40')
+legend('K_{pd} = 33.21', 'K_{pd2} = 40')
+erro_pd2=((1-dcgain(ftmf_pd2))/1)*100
+
+erro_pd2 =
+
+    9.8965
+
+figure; step(ftmf3, ftmf_pd2)
+legend('Prop', 'PD_2')
+% Eq. do controlador
+% C(s) = (s + z_Lead)/(s + p_Lead)
+zero_c
+
+zero_c =
+
+   -4.5523
+
+c_aux=tf(1+poly(zero_c),1)
+
+c_aux =
+ 
+  2 s + 5.552
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[2 5.5523]} ','     Denominator: {[0 1]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+c_aux=tf(1*poly(zero_c),1)
+
+c_aux =
+ 
+  s + 4.552
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1 4.5523]} ','     Denominator: {[0 1]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+zpk(ftma_aux)
+
+ans =
+ 
+          1
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[3×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+find_polo_zero
+
+Routine to determine the position of the pole or zero
+that is missing to complete controller design
+
+%OS$ (desired Overshoot, in %): ? 10
+  ts_d (desired settling time): ? 1.4
+Desired MF poles must be located at:
+	s = -2.85714 ± j3.89822
+
+Evaluating the pole(s) contribution angle(s):
+  Pole 1) in s=-10 + j(0)	| angle: 28.62^o
+  Pole 2) in s=-2 + j(0)	| angle: 102.40^o
+  Pole 3) in s=-1 + j(0)	| angle: 115.47^o
+			Sum(angle{poles}) = 246.50^o
+
+Evaluating the zero(s) contribution angle(s):
+			Sum(angle{zeros}) = 0.00^o
+
+Determining pole or zero location of the controller:
+Select: [p]=pole or [z]=zero, for the controller ? p
+
+Angle contribution required for controller: -426.50^o
+This means that the controller 
+	POLE must be at s = -1.16198
+
+To finish the project, note that:
+
+ftma =
+ 
+               1
+  ----------------------------
+  (s+10) (s+2) (s+1.162) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[4×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+Find the controller gain with the command:
+
+	>> K_ = rlocfind(ftma)
+
+ts_d=4.1872/2.5
+
+ts_d =
+
+    1.6749
+
+% ts_d = 1.7
+find_polo_zero
+
+Routine to determine the position of the pole or zero
+that is missing to complete controller design
+
+%OS$ (desired Overshoot, in %): ? 10
+  ts_d (desired settling time): ? 1.7
+Desired MF poles must be located at:
+	s = -2.35294 ± j3.2103
+
+Evaluating the pole(s) contribution angle(s):
+  Pole 1) in s=-10 + j(0)	| angle: 22.77^o
+  Pole 2) in s=-2 + j(0)	| angle: 96.27^o
+  Pole 3) in s=-1 + j(0)	| angle: 112.85^o
+			Sum(angle{poles}) = 231.90^o
+
+Evaluating the zero(s) contribution angle(s):
+			Sum(angle{zeros}) = 0.00^o
+
+Determining pole or zero location of the controller:
+Select: [p]=pole or [z]=zero, for the controller ? p
+
+Angle contribution required for controller: -411.90^o
+This means that the controller 
+	POLE must be at s = 0.164309
+
+To finish the project, note that:
+
+ftma =
+ 
+                1
+  -----------------------------
+  (s+10) (s+2) (s+1) (s-0.1643)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[4×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+Find the controller gain with the command:
+
+	>> K_ = rlocfind(ftma)
+
+ftma_Lead=ftma;
+K_Lead=rlocfind(ftma)
+Select a point in the graphics window
+
+selected_point =
+
+  -2.3460 + 3.4056i
+
+
+K_Lead =
+
+  444.2832
+
+ftmf_Lead=feedback(K_Lead*ftma, 1);
+figure; step(ftmf_LEad, ftmf_pd2)
+{Unrecognized function or variable 'ftmf_LEad'.
+} 
+figure; step(ftmf_Lead, ftmf_pd2)

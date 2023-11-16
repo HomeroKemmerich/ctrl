@@ -1,0 +1,26 @@
+G = tf(320, poly([-2 -8 -20]))
+
+G =
+ 
+             320
+  --------------------------
+  s^3 + 30 s^2 + 216 s + 320
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 0 320]} ','     Denominator: {[1 30 216 320]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1x1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1x1 struct] ','           Notes: [0x1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+zpk(G)
+
+ans =
+ 
+         320
+  ------------------
+  (s+20) (s+8) (s+2)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0x1 double]} ','                P: {[3x1 double]} ','                K: 320 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1x1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1x1 struct] ','            Notes: [0x1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1x1 struct] ',' '))">Model Properties</a>
+OS = 5;
+zeta = (-log(OS/100))/(sqrt(pi^2+(log(OS/100)^2)));
+rlocus(G)
+rlocus(G)
+com.mathworks.matlabserver.jcp.utils.WindowUtils.enableMoveOutOfBounds(true);
+diary commands3.txt

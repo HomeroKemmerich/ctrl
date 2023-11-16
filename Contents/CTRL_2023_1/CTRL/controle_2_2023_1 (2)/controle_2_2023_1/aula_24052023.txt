@@ -1,0 +1,339 @@
+pwd
+ans =
+    '/Users/fernandopassold/Documents/MATLAB/controle_2_2023_1'
+load planta
+% Lembrando da planta:
+zpk(G)
+
+ans =
+ 
+          1
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+% Lembrando de um Controlador Proporcional
+K3
+K3 =
+   100
+step(ftmf3)
+OS
+OS =
+    10
+stepinfo(ftmf3)
+ans = 
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+        RiseTime: 0.42552
+    SettlingTime: 4.1872
+     SettlingMin: 0.71538
+     SettlingMax: 1.1394
+       Overshoot: 36.727
+      Undershoot: 0
+            Peak: 1.1394
+        PeakTime: 1.1092
+ts_d=4.1872/3
+ts_d =
+       1.3957
+ts_d=1.4
+ts_d =
+          1.4
+find_polo_zero
+Error: expected a tf named "ftma_aux"!
+ 
+ftma_aux: A partial transfer function, containing the TF plant,
+G(s), and the partial tf of the controller, C_aux(s).
+ 
+Example_1: You want to design a PI and want to find out
+           the best place for the zero of the pi, then:
+           >> c_aux = tf(1, [1 0]);
+           >> ftma_aux = c_aux * G;
+ 
+Example_2: You want to design a PD and want to find out
+           the best place for the zero of the PD, then:
+           >> c_aux = tf(1, 1);
+           >> ftma_aux = c_aux * G;
+ 
+Aborting...
+ftma_aux=G;
+find_polo_zero
+
+Routine to determine the position of the pole or zero
+that is missing to complete controller design
+
+%OS$ (desired Overshoot, in %): ? 10
+  ts_d (desired settling time): ? 1.4
+Desired MF poles must be located at:
+	s = -2.85714 ± j3.89822
+
+Evaluating the pole(s) contribution angle(s):
+  Pole 1) in s=-10 + j(0)	| angle: 28.62^o
+  Pole 2) in s=-2 + j(0)	| angle: 102.40^o
+  Pole 3) in s=-1 + j(0)	| angle: 115.47^o
+			Sum(angle{poles}) = 246.50^o
+
+Evaluating the zero(s) contribution angle(s):
+			Sum(angle{zeros}) = 0.00^o
+
+Determining pole or zero location of the controller:
+Select: [p]=pole or [z]=zero, for the controller ? z
+
+Angle contribution required for controller: 66.50^o
+This means that the controller 
+	ZERO must be at s = -4.5523
+
+To finish the project, note that:
+
+ftma =
+ 
+      (s+4.552)
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+Find the controller gain with the command:
+
+	>> K_ = rlocfind(ftma)
+
+zpk(ftma)
+
+ans =
+ 
+      (s+4.552)
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+ftma_PD=ftma;
+_ = rlocfind(ftma)
+ _ = rlocfind(ftma)
+ 
+{Error: Invalid text character. Check for unsupported symbol,
+invisible character, or pasting of non-ASCII characters.
+} 
+K_PD = rlocfind(ftma)
+Select a point in the graphics window
+selected_point =
+      -2.8602 +     3.7152i
+K_PD =
+       31.238
+ftmf_PD=feedback(K_PD*ftma_PD,1);
+figure; step(ftmf_PD)
+erro=((1-dcgain(ftmf_PD))/1)*100
+erro =
+        12.33
+K_PD2=40;
+ftmf_PD2=feedback(K_PD2*ftma_PD,1);
+figure; step(ftmf_PD, ftmf_PD2)
+title('Step Response (PD)')
+legend('K_{PD}=31.238', 'K_{PD_2}=40')
+
+% Figuras geradas:
+% ![contrib_angular_PD.png](contrib_angular_PD.png)
+% ![RL_PD.png](RL_PD.png)
+% ![step_K3.png](step_K3.png)
+% ![step_PD_PD2.png](step_PD_PD2.png)
+% Página de referência: https://fpassold.github.io/Controle_2/aula_PD_03out2019.html
+erro_PD2=((1-dcgain(ftmf_PD2))/1)*100
+erro_PD2 =
+       9.8965
+figure; step(ftmf3, ftmf_PD2)
+legend('Prop','PD_2')
+% ![step_K3_PD_2.png](step_K3_PD_2.png)
+
+% ## Projeto de Lead
+
+% Eq. do controlador:
+
+% $$
+% C(s)=K \dfrac{(s+z_{Lead})}{(s+p_{Lead})}
+% $$
+
+% Repare, a rotina "find_polo_zero.m" criou a variável:
+zero_c
+zero_c =
+      -4.5523
+c_aux=tf(1*poly(zero_c),1)
+
+c_aux =
+ 
+  s + 4.552
+ 
+Continuous-time transfer function.
+
+ftma_aux=c_aux*G;
+zpk(ftma_aux)
+
+ans =
+ 
+      (s+4.552)
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+find_polo_zero
+
+Routine to determine the position of the pole or zero
+that is missing to complete controller design
+
+%OS$ (desired Overshoot, in %): ? 10
+  ts_d (desired settling time): ? 1.4
+Desired MF poles must be located at:
+	s = -2.85714 ± j3.89822
+
+Evaluating the pole(s) contribution angle(s):
+  Pole 1) in s=-10 + j(0)	| angle: 28.62^o
+  Pole 2) in s=-2 + j(0)	| angle: 102.40^o
+  Pole 3) in s=-1 + j(0)	| angle: 115.47^o
+			Sum(angle{poles}) = 246.50^o
+
+Evaluating the zero(s) contribution angle(s):
+  Zero 1) in s=-4.5523 + j(0)	| angle: 66.50^o
+			Sum(angle{zeros}) = 66.50^o
+
+Determining pole or zero location of the controller:
+Select: [p]=pole or [z]=zero, for the controller ? p
+
+Angle contribution required for controller: -360.00^o
+This means that the controller 
+	POLE must be at s = -1.59157e+16
+
+To finish the project, note that:
+
+ftma =
+ 
+             (s+4.552)
+  -------------------------------
+  (s+1.592e16) (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+[Warning: Accuracy may be poor in parts of the frequency range.
+Use the "prescale" command to maximize accuracy in the range of
+interest.] 
+[> In xscale
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ltipack.ssdata/utGetLoopData', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/engine/+ltipack/@ssdata/utGetLoopData.m', 23)" style="font-weight:bold">ltipack.ssdata/utGetLoopData</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/engine/+ltipack/@ssdata/utGetLoopData.m',23,0)">line 23</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ltipack.ltidata/rlocus', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/engine/+ltipack/@ltidata/rlocus.m', 27)" style="font-weight:bold">ltipack.ltidata/rlocus</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/engine/+ltipack/@ltidata/rlocus.m',27,0)">line 27</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resppack.ltisource/rlocus', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@resppack/@ltisource/rlocus.m', 25)" style="font-weight:bold">resppack.ltisource/rlocus</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@resppack/@ltisource/rlocus.m',25,0)">line 25</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wavepack.waveform/draw', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wavepack/@waveform/draw.m', 25)" style="font-weight:bold">wavepack.waveform/draw</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wavepack/@waveform/draw.m',25,0)">line 25</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.plot/draw', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@plot/draw.m', 17)" style="font-weight:bold">wrfc.plot/draw</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@plot/draw.m',17,0)">line 17</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('wrfc.plot.init_listeners>LocalRefreshPlot', '/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@plot/init_listeners.m', 79)" style="font-weight:bold">wrfc.plot.init_listeners>LocalRefreshPlot</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/shared/controllib/graphics/@wrfc/@plot/init_listeners.m',79,0)">line 79</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocusplot', '/Applications/Matlab_R2019b.app/toolbox/control/ctrldesign/@DynamicSystem/rlocusplot.m', 119)" style="font-weight:bold">DynamicSystem/rlocusplot</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/control/ctrldesign/@DynamicSystem/rlocusplot.m',119,0)">line 119</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DynamicSystem/rlocus', '/Applications/Matlab_R2019b.app/toolbox/control/ctrldesign/@DynamicSystem/rlocus.m', 63)" style="font-weight:bold">DynamicSystem/rlocus</a> (<a href="matlab: opentoline('/Applications/Matlab_R2019b.app/toolbox/control/ctrldesign/@DynamicSystem/rlocus.m',63,0)">line 63</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('find_polo_zero', '/Users/fernandopassold/Documents/MATLAB/controle_2_2023_1/find_polo_zero.m', 212)" style="font-weight:bold">find_polo_zero</a> (<a href="matlab: opentoline('/Users/fernandopassold/Documents/MATLAB/controle_2_2023_1/find_polo_zero.m',212,0)">line 212</a>)] 
+Find the controller gain with the command:
+
+	>> K_ = rlocfind(ftma)
+
+ts_d=4.1872/2.5
+ts_d =
+       1.6749
+% ts_d = 1.7
+find_polo_zero
+
+Routine to determine the position of the pole or zero
+that is missing to complete controller design
+
+%OS$ (desired Overshoot, in %): ? 10
+  ts_d (desired settling time): ? 1.7
+Desired MF poles must be located at:
+	s = -2.35294 ± j3.2103
+
+Evaluating the pole(s) contribution angle(s):
+  Pole 1) in s=-10 + j(0)	| angle: 22.77^o
+  Pole 2) in s=-2 + j(0)	| angle: 96.27^o
+  Pole 3) in s=-1 + j(0)	| angle: 112.85^o
+			Sum(angle{poles}) = 231.90^o
+
+Evaluating the zero(s) contribution angle(s):
+  Zero 1) in s=-4.5523 + j(0)	| angle: 55.59^o
+			Sum(angle{zeros}) = 55.59^o
+
+Determining pole or zero location of the controller:
+Select: [p]=pole or [z]=zero, for the controller ? p
+
+Angle contribution required for controller: -356.31^o
+This means that the controller 
+	POLE must be at s = -52.1892
+
+To finish the project, note that:
+
+ftma =
+ 
+           (s+4.552)
+  ----------------------------
+  (s+52.19) (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+
+Find the controller gain with the command:
+
+	>> K_ = rlocfind(ftma)
+
+ftma_Lead=ftma;
+K_Lead=rlocfind(ftma)
+Select a point in the graphics window
+selected_point =
+      -2.3682 +     3.2037i
+K_Lead =
+       1197.2
+ftmf_Lead=feedback(K_Lead*ftma, 1);
+figure; step(ftmf_Lead, ftmf_PD2)
+legend('Lead','PD_2')
+
+% Aumentando um pouco o ganho...
+K_lead2=3e3
+K_lead2 =
+        3000
+ftmf_Lead2=feedback(K_Lead2*ftma, 1);
+{Unrecognized function or variable 'K_Lead2'.} 
+ftmf_Lead2=feedback(K_lead2*ftma, 1);
+figure; step(ftmf_Lead2, ftmf_PD2)
+legend('Lead','PD_2')
+save planta
+[Warning: Figure is saved in planta.mat. Saving graphics handle
+variables can cause the creation of very large files. To save
+graphics figures, use <a  href="matlab:helpview([docroot,'/techdoc/ref/savefig.html'])">savefig</a>.] 
+legend('Lead_2','PD_2')
+legend('Lead_2','PD_2')
+% ![step_Lead2_PD2.png](step_Lead2_PD2.png)
+% Outras figuras geradas/gravadas:
+% RL com ganho K=3000 "descoberto" para o Lead2:
+% ![RL_Lead2_K3000.png](RL_Lead2_K3000.png)
+
+% ![step_PD2_Lead.png](step_PD2_Lead.png)
+% RL do Lead com ts factível:
+axis([-60 0 -1 3]) % aumentando área visivel do gráfico...
+axis([-60 0 -1 4]) % aumentando área visivel do gráfico...
+% ![contrib_angular_Lead.png](contrib_angular_Lead.png)
+
+% Entendendo erro no projeto do 1o-Lead, com ts "impossível"
+% para o mesmo:
+% ![contrib_angular_Lead_1.png](contrib_angular_Lead_1.png)
+% Note o traço vermelho que corresponde a contribuição
+% angular associada com polo do Lead localizado em $-\infty$.
+% Se a pessoa insistir neste projeto, note como fica seu RL:
+% ![RL_Lead_1.png](RL_Lead_1.png)
+% Um "zoom" sobre esta figura revela:
+axis([-1 1 -10 10])
+axis([-5 15 -100 100])
+axis([-5 15 -50 50])
+axis([-5 5 -25 25])
+axis([-10 5 -25 25])
+% ![RL_Lead_1_zoom.png](RL_Lead_1_zoom.png)
+% Note a falta de "precisão" do rlocus do Matlab neste caso:
+% poucos e não tão baixos incrementos no valor do ganho K
+% foram usados no início do traçado deste RL
+% Com o zoom é possível perceber um $K \cong 5,57 \times 10^{17}$!
+% Ou seja, um controlador impossível de ser executado
+% requer um pólo muito distante no plano-s (pólo em $s \to \infty$).
+% com um valor de ganho "estratosférico".
+% MOtivo pelo qual tentar fazer o Lead responder tão rápido
+% quanto o PD pode não ser praticável.
+close all % fecha todas as janelas gráficas
+save planta % guardando info para próximos projetos
+diary off
