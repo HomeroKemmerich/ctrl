@@ -1,0 +1,225 @@
+%# Sintonia de PID
+%## Resposta em malha aberta para enrada em degrau
+
+>> G=tf(20, poly([-1 -2]))
+
+G =
+ 
+       20
+  -------------
+  s^2 + 3 s + 2
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[0 0 20]} ','     Denominator: {[1 3 2]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+
+>>zpk(G)
+
+ans =
+ 
+      20
+  -----------
+  (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[2×1 double]} ','                K: 20 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+
+>> dcgain(G)
+
+ans =
+
+    10
+
+>> step(G)
+
+% transformando a curva de G em um vetor
+
+t = 0:0.01:14; 
+[y, t] = step(G);
+figure; plot(t, y)
+% utilizar a ferramenta "Basic Fitting"
+Variables have been created in the base workspace.
+% o Basic fitting irá calcular um polinômio gerador para o gráfico estudado
+% Exportando o resultado obteremos a variãvel `fit`, que contém as informações sobre o polinômio gerador
+fit
+
+fit = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     type: 'polynomial degree 8'
+    coeff: [2.8126e-04 -0.0083 0.1037 -0.7120 2.9078 -6.9863 8.2936 0.4148 -0.0222]
+
+% observando os coeficientes do polinômio, iremos encontrar algum que se adeque ao ponto de inflexão da curva
+p = fit.coeff
+
+p =
+
+    0.0003   -0.0083    0.1037   -0.7120    2.9078   -6.9863    8.2936    0.4148   -0.0222
+
+% agora iremos derivar duas vezes para encontrar a reta tangente ao ponto de inflexão
+d_p = polyder(p);
+dd_p = polyder(d_p);
+% Calculamos as raízes de dd_p para descobrir os pontos de inflexão
+roots(dd_p)
+
+ans =
+
+   5.9353 + 0.0000i
+   4.9063 + 0.4897i
+   4.9063 - 0.4897i
+   2.8393 + 1.4654i
+   2.8393 - 1.4654i
+   0.7149 + 0.0000i
+
+% estamos procurando raízes reais, pois estamos falando do domínio tempo
+% dentre as duas raízes, a que mais se encaixa com o ponto de inflexão é a 6a, portanto utilizaremos ela para prosseguir
+r = ans(6)
+
+r =
+
+    0.7149
+
+% Levantando os dados que faltam para determinar a reta tangente à curva de resposta da planta e que passe pelo ponto de inflexão, lembramos da equaçao da reta:
+% y = a * t + b
+x=r
+
+x =
+
+    0.7149
+
+% O valor de a corresponde ao valor da derivada primeira da curva aproximada
+% o valor de `x` corresponde ao ponto de inflexão da curva
+a = polyval(d_p, x)
+
+a =
+
+    4.9897
+
+% valor de y(t) para t = x
+y_x = polyval(p, x)
+
+y_x =
+
+    2.6001
+
+b = y_x - a * x
+
+b =
+
+   -0.9671
+
+% polinômio da reta tangente ao ponto de inflexão de G
+_G = [a b]
+ _G = [a b]
+ ↑
+{Error: Invalid text character. Check for unsupported symbol, invisible character, or pasting of
+non-ASCII characters.
+} 
+G_ = [a b]
+
+G_ =
+
+    4.9897   -0.9671
+
+y_G_ = a .* t + b; % esta é a reta tangente
+figure; plot(t, y, 'k-', t, y_G_, 'b--')
+axis([0 1 0 1])
+axis([0 1 0 2])
+axis([0 1 0 4])
+axis([0 2 0 4])
+axis([0 2 0 2])
+axis([0 4 0 10])
+figure; plot(t, y, 'k-', t, y_G_, 'b--')
+axis([0 4 0 10])
+axis([0 1.5 0 10])
+axis([-0.5 1.5 -0.5 1])
+axis([-0.5 1.5 -0.5 10])
+grid
+axis([-0.5 0.5 -0.5 2])
+% `l` corresponde ao ponto no qual a reta cruza o eixo quando `y = 0`
+l = -b/a;
+% E o parâmetro T pode ser determinando, descobrindo-se t1, onde `t1 = l + t`
+t1 = (10 - b)/a
+
+t1 =
+
+    2.1979
+
+T = t1 - l
+
+T =
+
+    2.0041
+
+s = tf('s');
+C_PI_1 = 0.6 * T * (s + 1/l)^2/s
+
+C_PI_1 =
+ 
+  1.202 s^2 + 12.41 s + 32.01
+  ---------------------------
+               s
+ 
+Continuous-time transfer function.
+<a href="matlab:disp(char('','       Numerator: {[1.2025 12.4086 32.0118]} ','     Denominator: {[0 1 0]} ','        Variable: ''s'' ','         IODelay: 0 ','      InputDelay: 0 ','     OutputDelay: 0 ','       InputName: {''''} ','       InputUnit: {''''} ','      InputGroup: [1×1 struct] ','      OutputName: {''''} ','      OutputUnit: {''''} ','     OutputGroup: [1×1 struct] ','           Notes: [0×1 string] ','        UserData: [] ','            Name: '''' ','              Ts: 0 ','        TimeUnit: ''seconds'' ','    SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+zpk(C_PI_1)
+
+ans =
+ 
+  1.2025 (s+5.16)^2
+  -----------------
+          s
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[2×1 double]} ','                P: {[0]} ','                K: 1.2025 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+% agora, fechamos a malha com o controlador
+oloop_tf_PI_1 = C_PI_1 * G;
+zpk(oloop_tf_PI_1)
+
+ans =
+ 
+  24.05 (s+5.16)^2
+  ----------------
+   s (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[2×1 double]} ','                P: {[3×1 double]} ','                K: 24.0496 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+% fechando a malha
+cloop_tf_PI_1 = feedback(oloop_tf_PI_1, 1);
+% verificano os polos
+pole(cloop_tf_PI_1)
+
+ans =
+
+ -11.4728 + 4.9375i
+ -11.4728 - 4.9375i
+  -4.1039 + 0.0000i
+
+% verificano os zeros
+zero(cloop_tf_PI_1)
+
+ans =
+
+  -5.1596 + 0.0000i
+  -5.1596 - 0.0000i
+
+figure; step(cloop_tf_PI_1)
+
+stepinfo(cloop_tf_PI_1)
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+         RiseTime: 0.0575
+    TransientTime: 0.3761
+     SettlingTime: 0.3761
+      SettlingMin: 0.9179
+      SettlingMax: 1.1569
+        Overshoot: 15.6922
+       Undershoot: 0
+             Peak: 1.1569
+         PeakTime: 0.1565
+
+save workspace
+diary off
