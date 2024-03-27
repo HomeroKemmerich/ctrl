@@ -128,3 +128,7 @@ Agora podemos plotar a resposta em malha fechada do sistema com o controlador PI
 ![Malha fechada](./pictures/cloop_C_PI%20_step.png)
 
 [^1]: `oloop` é a abreviação de Open Loop e `cloop` é a abreviação de Closed Loop.
+
+## Resumindo
+
+O método de sintonia do PID por resposta em malha aberta para entrada em degrau implica em encontrar uma equação que descreva a curva de resposta da planta ao degrau unitário, derivar essa equação duas vezes para encontrar o ponto de inflexão, e então determinar a reta tangente a esse ponto. A interseção dessa reta com o eixo $t$ nos dá o tempo morto $L$, e a diferença entre o tempo de subida e o tempo morto nos dá o tempo de acomodação $T$. Com esses valores, podemos determinar o controlador PI q  ue sintoniza o sistema para a resposta desejada.
