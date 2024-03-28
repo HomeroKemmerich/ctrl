@@ -1,0 +1,79 @@
+G=tf(1,poly([-1 -2 -10]));
+zpk(G)
+
+ans =
+ 
+          1
+  ------------------
+  (s+10) (s+2) (s+1)
+ 
+Continuous-time zero/pole/gain model.
+<a href="matlab:disp(char('','                Z: {[0×1 double]} ','                P: {[3×1 double]} ','                K: 1 ','    DisplayFormat: ''roots'' ','         Variable: ''s'' ','          IODelay: 0 ','       InputDelay: 0 ','      OutputDelay: 0 ','        InputName: {''''} ','        InputUnit: {''''} ','       InputGroup: [1×1 struct] ','       OutputName: {''''} ','       OutputUnit: {''''} ','      OutputGroup: [1×1 struct] ','            Notes: [0×1 string] ','         UserData: [] ','             Name: '''' ','               Ts: 0 ','         TimeUnit: ''seconds'' ','     SamplingGrid: [1×1 struct] ',' '))">Model Properties</a>
+dcgain(G)
+
+ans =
+
+    0.0500
+
+dcgain(G)*60 %? por que ?
+
+ans =
+
+     3
+
+save 240328_workspace
+T = 60;
+save 240328_workspace
+T = 3;
+save 240328_workspace
+T = 0.05;
+save 240328_workspace
+% utilizamos o valor t = 0,05 na planta do simulink
+[Warning: Cannot load an object of class 'proplistener':
+ No matching constructor signature found.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.internal.figfile.FigFile/read', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m', 31)" style="font-weight:bold">matlab.graphics.internal.figfile.FigFile/read</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m',31,0)">line 31</a>)
+In matlab.graphics.internal.figfile.FigFile
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('loadFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m', 31)" style="font-weight:bold">loadFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m',31,0)">line 31</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig>localOpenFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 75)" style="font-weight:bold">openfig>localOpenFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',75,0)">line 75</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 40)" style="font-weight:bold">openfig</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',40,0)">line 40</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('open', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m', 139)" style="font-weight:bold">open</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m',139,0)">line 139</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('uiopen', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m', 125)" style="font-weight:bold">uiopen</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m',125,0)">line 125</a>)] 
+[Warning: During load:
+ An invalid default object has been detected while loading a heterogeneous array of class
+ event.proplistener. An empty array of class event.proplistener will be returned.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.internal.figfile.FigFile/read', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m', 31)" style="font-weight:bold">matlab.graphics.internal.figfile.FigFile/read</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m',31,0)">line 31</a>)
+In matlab.graphics.internal.figfile.FigFile
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('loadFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m', 31)" style="font-weight:bold">loadFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m',31,0)">line 31</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig>localOpenFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 75)" style="font-weight:bold">openfig>localOpenFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',75,0)">line 75</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 40)" style="font-weight:bold">openfig</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',40,0)">line 40</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('open', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m', 139)" style="font-weight:bold">open</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m',139,0)">line 139</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('uiopen', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m', 125)" style="font-weight:bold">uiopen</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m',125,0)">line 125</a>)] 
+a = 0.2877;
+T_u = 1.434;
+[Warning: Cannot load an object of class 'proplistener':
+ No matching constructor signature found.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.internal.figfile.FigFile/read', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m', 31)" style="font-weight:bold">matlab.graphics.internal.figfile.FigFile/read</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m',31,0)">line 31</a>)
+In matlab.graphics.internal.figfile.FigFile
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('loadFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m', 31)" style="font-weight:bold">loadFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m',31,0)">line 31</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig>localOpenFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 75)" style="font-weight:bold">openfig>localOpenFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',75,0)">line 75</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 40)" style="font-weight:bold">openfig</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',40,0)">line 40</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('open', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m', 139)" style="font-weight:bold">open</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m',139,0)">line 139</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('uiopen', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m', 125)" style="font-weight:bold">uiopen</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m',125,0)">line 125</a>)] 
+[Warning: During load:
+ An invalid default object has been detected while loading a heterogeneous array of class
+ event.proplistener. An empty array of class event.proplistener will be returned.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.internal.figfile.FigFile/read', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m', 31)" style="font-weight:bold">matlab.graphics.internal.figfile.FigFile/read</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\+matlab\+graphics\+internal\+figfile\@FigFile\read.m',31,0)">line 31</a>)
+In matlab.graphics.internal.figfile.FigFile
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('loadFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m', 31)" style="font-weight:bold">loadFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\private\loadFigure.m',31,0)">line 31</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig>localOpenFigure', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 75)" style="font-weight:bold">openfig>localOpenFigure</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',75,0)">line 75</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('openfig', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m', 40)" style="font-weight:bold">openfig</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\graphics\objectsystem\openfig.m',40,0)">line 40</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('open', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m', 139)" style="font-weight:bold">open</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\general\open.m',139,0)">line 139</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('uiopen', 'C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m', 125)" style="font-weight:bold">uiopen</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2023b\toolbox\matlab\uitools\uiopen.m',125,0)">line 125</a>)] 
+d = 60;
+K_u = (4 * d) / (pi * a);
+K_p = 0.6 * K_u;
+K_i = 1.2 * (K_u * T_u);
+K_i = 1.2 * (K_u / T_u);
+K_d = 0.074 * (K_u * T_u);
+% este controlador pode ser emlhorado ajustando os ganhos (Reduzindo K_p e K_i, e mantendo K_d)
+diary off

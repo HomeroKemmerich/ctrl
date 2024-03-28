@@ -38,7 +38,7 @@ Fazendo o cálculo para obter o período do ganho máximo:
 
 Com isso obtivemos $T_u = 0.8219$
 
-Assim, podemos utilizar a tabela de [Zieger-Nichols](../zieger_nichols.md) para obter os ganhos do PID:
+Assim, podemos utilizar a [Tabela de Zieger-Nichols] para obter os ganhos do PID:
 
 ```matlab
 % PID Classico
@@ -51,7 +51,7 @@ Passando os valores de ganho proporcional, integral e derivativo para um control
 
 ![$PID_G$](./pictures/PID_G.png)
 
-Podemos observar que há um overshoot bastante elevado (próximo de 60%). Por isso, vamos ajustar o controlador novamente utilizando a [tabela de Zieger-Nichols](../zieger_nichols.md):
+Podemos observar que há um overshoot bastante elevado (próximo de 60%). Por isso, vamos ajustar o controlador novamente utilizando a [Tabela de Ziegler-Nichols]:
 
 ```matlab
 % Com overshoot
@@ -69,5 +69,7 @@ Obtendo, por fim, a seguinte resposta:
 - O método $K_u$ consiste em calcular os ganhos de um controlador PID através de seu ganho máximo.
 - O ganho máximo é obtido quando o o sinal de saída entra em oscilação constante.
 - O ganho máximo pode ser obtido observando o local geométrico das raízes do controlador
-- Após encontrado, utilizamos este ganho para calcular os ganhos do controlador de acordo com a [Tabela de Ziegler-Nichols](../zieger_nichols.md).
+- Após encontrado, utilizamos este ganho para calcular os ganhos do controlador de acordo com a [Tabela de Ziegler-Nichols].
 - Com base no resultado obtido, ajustamos os ganhos novamente de acordo com a tabela.
+
+[Tabela de Ziegler-Nichols]: ../ziegler_nichols.md

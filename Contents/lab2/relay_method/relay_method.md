@@ -1,0 +1,1 @@
+# Método do relé
