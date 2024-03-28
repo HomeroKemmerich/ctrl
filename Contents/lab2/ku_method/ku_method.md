@@ -1,4 +1,9 @@
 # Método $K_u$
+ 
+## Materiais
+
+- [Planta 1](./models/planta_1_Ku.slx)
+- [Planta 2](./models/planta_2_Ku.slx)
 
 ## Roteiro
 
