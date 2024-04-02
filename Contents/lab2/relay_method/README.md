@@ -61,3 +61,5 @@ O sistema pode ser melhorado ajustando os ganhos (reduzindo $K_p$ e $K_i$, e man
 ## Conclusões
 
 É possível constatar que o método do relé é um dos métodos mais simples de sintonização do PID, pois exige menos etapas na sua execução.
+
+<object data="./models/relay.pdf" type="application/pdf" width="100%"></object>
