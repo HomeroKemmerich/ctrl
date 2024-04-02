@@ -21,11 +21,11 @@ Obtemos o ganho de baixa frequência do controlador :
         0.0500
 ```
 
-Inserimos este valor de ganho como $t$ no [Diagrama de ajuste] no Simulink.
+Inserimos este valor de ganho como $t$ no [diagrama] no Simulink.
 
 Obtemos os valores de amplitude e período de acordo com a saída do controlador.
 
-![Saída do controlador](./pictures/system_out.png)
+![Saída do controlador](./assets/pictures/system_out.png)
 
 ```matlab
 >> a = 0.2877;
@@ -34,7 +34,7 @@ Obtemos os valores de amplitude e período de acordo com a saída do controlador
 
 Após isso, obtemos a amplitude da saída do relé:
 
-![Saída do relé](./pictures/relay_controller_out.png)
+![Saída do relé](./assets/pictures/relay_controller_out.png)
 
 ```matlab
 >> d = 60;
@@ -51,15 +51,14 @@ Após, calculamos os valores de ganho utilizando a [Tabela de Ziegler-Nichols](.
 
 Com base nesses valores, remontamos o sistema utilizando estes ganhos para realizar o controle PID como é mostrado no [Diagrama do PID], resultando na seguinte saída:
 
-![Saída PID](./pictures/pid_out.png)
+![Saída PID](./assets/pictures/pid_out.png)
 
 O sistema pode ser melhorado ajustando os ganhos (reduzindo $K_p$ e $K_i$, e mantendo $K_d$)
 
 [Diagrama de ajuste]: ./models/planta_ajuste_metodo_rele.slx
+[diagrama]: ./assets/pdf/relay.pdf
 [Diagrama do PID]: ./models/planta_2_PID.slx
 
 ## Conclusões
 
 É possível constatar que o método do relé é um dos métodos mais simples de sintonização do PID, pois exige menos etapas na sua execução.
-
-<embed src="./models/relay.pdf" type="application/pdf"></embed>
