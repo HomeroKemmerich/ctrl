@@ -1,0 +1,3 @@
+[submodule "Assignments/pid-syntonization"]
+	path = Assignments/pid-syntonization
+	url = https://github.com/HomeroKemmerich/pid-syntonization.git
