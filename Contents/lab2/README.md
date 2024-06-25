@@ -8,4 +8,4 @@
 
 ## Conteúdos práticos
 
-- <./aula_240416/README.md> 
+- [Sintonia do PID utilizando o método Ku](./aula_240416/README.md) 
