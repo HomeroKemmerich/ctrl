@@ -1,6 +1,6 @@
 # Laboratório de Controle Automático 2
 
-## Conteúdos
+## Conteúdos teóricos
 
 - [Método por malha aberta](./oloop_method)
 - [Método Ku](./ku_method)
