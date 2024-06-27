@@ -1,3 +1,6 @@
 [submodule "Assignments/pid-syntonization"]
 	path = Assignments/pid-syntonization
 	url = https://github.com/HomeroKemmerich/pid-syntonization.git
+[submodule "Assignments/coffee-heating"]
+	path = Assignments/coffee-heating
+	url = https://github.com/HomeroKemmerich/coffee-heating.git
